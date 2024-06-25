@@ -1,0 +1,60 @@
+<title>toggle-switch</title>
+<meta attribute="on" type="boolean">
+<meta attribute="name" type="string">
+<meta property="value">
+<meta method="toggle">
+<meta form-associated>
+
+<template mode="closed">
+	<div
+		id="track"
+		:class+on="$.on"
+		@click="$.toggle()"
+	>
+		<div id="thumb"></div>
+	</div>
+</template>
+<script>
+const internals = this.attachInternals();
+
+live.link($.$value, {
+	get: () => $.on,
+	set: value => $.on = value,
+	changes: when($.$on).changes()
+});
+
+$.toggle = force => {
+	$.on = force ?? !$.on;
+};
+
+when($.$on).changes().then(() => {
+	const formValue = $.on ? 'true' : '';
+	internals.setFormValue(formValue);
+});
+</script>
+<style>
+:host {
+	display: inline-block;
+	line-height: 0;
+	cursor: pointer;
+}
+#track {
+	width: 2.5rem;
+	height: 1rem;
+	padding: .25rem;
+	background-color: #38314b;
+	border-radius: 1rem;
+	transition: background-color .2s;
+	&.on {
+		background-color: #7080B0;
+		#thumb { translate: 1.5rem 0; }
+	}
+}
+#thumb {
+	width: 1rem;
+	height: 1rem;
+	border-radius: 50%;
+	background-color: #F8F8F2;
+	transition: translate .2s;
+}
+</style>

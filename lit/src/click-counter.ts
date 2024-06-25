@@ -1,0 +1,36 @@
+import { html, css, LitElement } from 'lit';
+import {
+	customElement,
+	property,
+} from 'lit/decorators.js';
+
+@customElement('click-counter')
+export class ClickCounter extends LitElement {
+	static styles = css`
+		button {
+			padding: .75rem 1.5rem;
+			border: none;
+			font-size: 1rem;
+			line-height: 1.5;
+			border-radius: .75rem;
+			color: #181823;
+			background-color: #FFB86C;
+			cursor: pointer;
+		}
+	`;
+
+	@property({ reflect: true, type: Number })
+	accessor amount: number = 0;
+
+	reset(){
+		this.amount = 0;
+	}
+
+	render() {
+		return html`
+			<button @click=${() => this.amount++}>
+				clicks: ${this.amount}
+			</button>
+		`;
+	}
+}
