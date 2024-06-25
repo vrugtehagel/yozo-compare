@@ -23,7 +23,7 @@ Note that there are slightly behavioral differences between them, but that's oka
 Each framework is built 4 times; one for each component, and once more for all three components together. The results are gzipped sizes, calculated with `gzip -c filename.js | wc -c`. If there are multiple files (like with Yozo) then the gzipped sizes are computed for each file and added, which ends up being the transferred size that a browser would need to download.
 
 | Framework | no-op     | click-counter | toggle-switch | All together |
-| --------- | --------- | ------------- | ------------- | ------------ |
+|:--------- | ---------:| -------------:| -------------:| ------------:|
 | Lit       |  6935     |  7743         |  8485         |  8754        |
 | Stencil   |  3696     |  6851         |  7487         |  8166        |
 | Svelte    |  2455     |  3002         |  3282         |  3590        |
